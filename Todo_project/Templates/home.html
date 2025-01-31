@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>homepage</title>
+</head>
+<style>
+    .body
+    {
+        background-image: url("{% static 'images/image5.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+    }
+    .heading
+    {
+        color: white;
+    }
+    .table
+    {
+        color: white;
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
+    }
+    .a
+    {
+        color: red;
+
+    }
+    .tr:hover
+    {
+        background-color: #9d9fa3 ;
+    }
+    a:hover
+    {
+        color: #190ccc;
+    }
+    .logout
+    {
+
+    }
+</style>
+<body class="body">
+        <button class="logout"><a href="{% url 'authentication:login' %}">Logout</a></button>
+
+<!--    <img src="{% static 'images/image2.jpg' %}" alt="no image">-->
+<!--    <button class="logout">logout</button>-->
+    <center><h1 class="heading">Welcome to TODO Project</h1></center>
+    <form action="" method="post" enctype="multipart/form-data">
+        <center><h2 class="heading">Welcome {{user}}</h2></center>
+        {% csrf_token %}
+        <center><p class="heading">Add new task <a class="a" href="addtask/">Create task</a></p></center>
+
+    </form>
+
+        <br><br>
+        <center>
+            <table border="1" class="table">
+                <tr>
+                    <th class="table">Task_id</th><th>Task_title</th><th>Task_complete</th><th>Task_description</th><th>Created_Date</th><th>Updated_Date</th>
+                </tr>
+                {% for item in task_list %}
+                <tr class="tr">
+                    <td class="tr">{{item.id}}</td>
+                    <td class="tr">{{item.task_title}}</td>
+                    <td class="tr">{{item.task_complete}}</td>
+                    <td class="tr">{{item.task_description}}</td>
+                    <td class="tr">{{item.created_on}}</td>
+                    <td class="tr">{{item.updated_on}}</td>
+                    <td class="tr"><a href="viewsingletask/{{item.id}}" class="a">View</a></td>
+                    <td class="tr"><a href="update/{{item.id}}" class="a">Edit</a></td>
+                    <td class="tr"><a href="delete/{{item.id}}" class="a">Delete</a></td>
+                </tr>
+                {%endfor%}
+            </table>
+    </center>
+<!--    Display success message-->
+        <br><br>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert{{message.tags}}" style="color:white">
+               <center>{{message}}</center>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+</body>
+</html>

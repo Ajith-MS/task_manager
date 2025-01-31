@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>viewtasks</title>
+</head>
+<body>
+    <center><h1>Tasks</h1></center>
+    <center>
+    <table border="1">
+        <tr>
+            <th>task_id</th><th>task_title</th><th>task_complete</th><th>task_description</th>
+        </tr>
+        {% for task in task_lst%}
+        <tr>
+            <td>{{task.id}}</td>
+            <td>{{task.task_title}}</td>
+            <td>{{task.task_complete}}</td>
+            <td>{{task.task_description}}</td>
+            <td><a href="">View</a></td>
+            <td><a href="delete/{{item.id}}">Delete</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    </center>
+</body>
+</html>

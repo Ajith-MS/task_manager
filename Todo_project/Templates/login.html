@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+</head>
+<style>
+    .body
+        {
+            background-image: url("{% static 'images/image3.jpg' %}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 100%;
+        }
+
+     .form
+    {
+            margin: auto;
+            width: 30%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center; / Align form content to center /
+    }
+
+     .textbox
+    {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+    }
+    .button
+    {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: blue
+
+    }
+
+</style>
+<body class="body">
+    <br><br><br>
+    <center>
+        <form class="form" action="" method="post" enctype="multipart/form-data" id="loginform">
+        {% csrf_token %}
+            <center><h2> Sign in</h2></center>
+        <input type="text" placeholder="UserName" name="username" required class="textbox"><br><br>
+        <input type="password" placeholder="Password" name="password" class="textbox"><br><br>
+        <button name="login_button" class="button" style="color: white">Login</button><br>
+<!--         <p>Create new user&nbsp;&nbsp;<a href="/registration">Sign up</a></p>-->
+
+            <p>Create new user&nbsp;&nbsp;<a href="{% url 'authentication:registration' %}">Sign up</a></p>
+        </form>
+
+        <br>
+
+        {% if messages %}
+                {% for message in messages %}
+                    <div class="alert{{message.tags}}" style="color:red">
+                       <center>{{message}}</center>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+    </center>
+
+</body>
+</html>

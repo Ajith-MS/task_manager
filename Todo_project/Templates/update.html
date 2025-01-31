@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+</head>
+<style>
+    .body
+    {
+        background-image: url("{% static 'images/image5.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+    }
+     .heading
+    {
+        color: black;
+    }
+    .form
+    {
+            margin: auto;
+            width: 30%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center; / Align form content to center /
+    }
+</style>
+<br><br>
+<body class="body">
+    <center>
+        <form class="form" action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <center><h1 class="heading">Edit your task</h1></center>
+        <br><br>
+            <label class="heading">Task_Title</label>
+            <input type="text" value="{{task.task_title}}" name="task_title"><br><br>
+            <label class="heading">Task_Description</label>
+            <input type="text" value="{{task.task_description}}" name="task_description"><br><br>
+            <label class="heading">Task_Complete</label>
+            <input type="text" value="{{task.task_complete}}" name="task_complete"><br><br>
+<!--            <input type="radio" name="task_complete" id="true">-->
+<!--            <label for="true">True</label>-->
+<!--            <input type="radio" name="task_complete" id="false">-->
+<!--            <label for="false">False</label><br><br>-->
+            <center><button>Update</button></center>
+    </form>
+    </center>
+
+</body>
+</html>

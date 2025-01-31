@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>registration</title>
+</head>
+<style>
+    .body
+    {
+        background-image: url("{% static 'images/image7.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+    }
+    .form
+    {
+            margin: auto;
+            width: 30%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center; / Align form content to center /
+    }
+    .textbox
+    {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+    }
+    .button
+    {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: blue
+
+    }
+
+</style>
+<body class="body">
+<br><br><br>
+    <form class="form" action="" method="post" enctype="multipart/form-data" id="registrationform">
+        {% csrf_token %}
+        <center><h1>Sign Up</h1></center>
+        <center>
+            <input type="text" placeholder="Username" name="username" class="textbox" required><br><br>
+
+            <input type="text" placeholder="Firstname" name="firstname" class="textbox" required><br><br>
+
+            <input type="email" placeholder="Email" name="email" class="textbox" required><br><br>
+
+            <input type="password" placeholder="Password" name="password" class="textbox" required><br><br>
+
+            <input type="password" placeholder="Confirm Password" name="confirm_password" class="textbox" required><br><br>
+
+            <button class="button" style="color: white">Register</button>
+
+<!--            <p>Already have account &nbsp;&nbsp;<a href="/">Sign in</a></p>-->
+            <p>Already have account &nbsp;&nbsp;<a href="{% url 'authentication:login' %}">Sign in</a></p>
+
+        </center>
+    </form>
+
+    {% if messages %}
+            {% for message in messages %}
+                <div class="alert{{message.tags}}" style="color:white">
+                   <center>{{message}}</center>
+                </div>
+            {% endfor %}
+    {% endif %}
+
+</body>
+</html>

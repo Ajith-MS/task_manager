@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>add_task</title>
+</head>
+<style>
+    .body
+    {
+        background-image: url("{% static 'images/image5.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+    }
+    .heading
+    {
+        color: white;
+    }
+    .form
+    {
+            margin: auto;
+            width: 30%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center; / Align form content to center /
+    }
+    .textbox
+    {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+    }
+
+</style>
+<body class="body">
+<center><h1 class="heading">Create Task</h1></center>
+<center>
+     <form class="form" action="" method="post" enctype="multipart/form-data" id="createform">
+        {% csrf_token %}
+        <input class="textbox" type="text" placeholder="Task_title" name="task_title" required><br><br>
+
+        <input class="textbox" type="text" placeholder="Task_complete" name="task_complete"><br><br>
+
+        <input class="textbox" type="text" placeholder="Task_description" name="task_description" required><br><br>
+        <button class="button" name="add_task_button">Add task</button><br><br>
+    </form>
+</center>
+
+
+
+<!--    <h2>Task List</h2>-->
+<!--    <table border="1">-->
+<!--        <tr>-->
+<!--            <th>task_id</th><th>task_title</th><th>task_complete</th><th>task_description</th>-->
+<!--        </tr>-->
+<!--        {% for item in task_list%}-->
+<!--        <tr>-->
+<!--            <td>{{item.id}}</td>-->
+<!--            <td>{{item.task_title}}</td>-->
+<!--            <td>{{item.task_complete}}</td>-->
+<!--            <td>{{item.task_description}}</td>-->
+<!--            <td><a href="viewsingletask/{{item.id}}">View</a></td>-->
+<!--            <td><a href="delete/{{item.id}}">Delete</a></td>-->
+<!--        </tr>-->
+<!--        {%endfor%}-->
+<!--    </table>-->
+</body>
+</html>

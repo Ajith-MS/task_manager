@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>viewsingletask</title>
+</head>
+<style>
+    .body
+    {
+        background-image: url("{% static 'images/image5.jpg' %}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+    }
+    .heading
+    {
+        color: white;
+    }
+    .table
+    {
+        color: white;
+    }
+    .a
+    {
+        color: red;
+
+    }
+   .tr:hover
+    {
+        background-color: #9d9fa3 ;
+    }
+    a:hover
+    {
+        color: #03fffb;
+    }
+
+</style>
+<body class="body">
+        <center><h1 class="heading">Task Details</h1></center>
+        <form class="form" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <center>
+            <table border="1" class="table">
+            <tr>
+                <th>Task_id</th><th>Task_title</th><th>Task_complete</th><th>Task_description</th><th>Created_Date</th><th>Updated_Date</th>
+            </tr>
+
+            <tr class="tr">
+                <td class="tr">{{task_list.id}}</td>
+                <td class="tr">{{task_list.task_title}}</td>
+                <td class="tr">{{task_list.task_complete}}</td>
+                <td class="tr">{{task_list.task_description}}</td>
+                <td class="tr">{{task_list.created_on}}</td>
+                <td class="tr">{{task_list.updated_on}}</td>
+
+                <td><a href="update/{{task_list.id}}" class="a">Edit</a></td>
+
+<!--                <td><a href="viewsingletask/{{item.id}}">View</a></td>-->
+                <td><a href="delete/{{task_list.id}}" class="a">Delete</a></td>
+<!--                <td><a href="/todo" class="a">Home</a></td>-->
+                <td><a href="{% url 'todoapp:homepage' %}" class="a">Home</a></td>
+
+            </tr>
+        </table>
+        </center>
+        </form>
+
+</body>
+</html>
